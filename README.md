@@ -56,28 +56,28 @@ The application is used to interactively post, manage, and search for classified
 
 Projekt lze spustit dvěma způsoby:
 
-### Možnost 1: stažení jako .zip 
+## Možnost 1: Stažení jako .zip
 1. Na hlavní stránce repozitáře klikněte na zelené tlačítko **Code**.
 2. Zvolte možnost **Download ZIP**.
-3. Stažený archiv rozbalte na svém počítači.
-4. Otevřete složku projektu ve svém editoru (např. VS Code) a spusťte soubor `index.html` přes lokální server (např. rozšíření *Live Server*).
+3. Stažený archiv rozbalte/extrahujte na plochu svého počítače.
+4. Poté stačí kliknout přímo na soubor `index.html` pro spuštění, případně můžete složku otevřít ve svém editoru (např. VS Code) a spustit ho přes lokální server (např. rozšíření *Live Server*).
 
-#### Možnost B: Klonování přes Git
-1. Naklonujte si repozitář: `git clone https://github.com/UkU1U/Digitalni_nastenk.git`
+## Možnost 2: Klonování přes Git
+1. Naklonujte si repozitář: git clone [https://github.com/UkU1U/Digitalni_nastenka.git](https://github.com/UkU1U/Digitalni_nastenka.git)
 2. Otevřete složku a spusťte `index.html`.
 
-### 🚀 Running the project
+## 🚀 Running the project
 
 The project can be run in two ways:
 
-#### Option A: Download as .zip
+## Option 1: Download as .zip
 1. On the repository main page, click the green **Code** button.
 2. Select **Download ZIP**.
-3. Extract the downloaded archive on your computer.
-4. Open the project folder in your editor (e.g., VS Code) and run `index.html` via a local server (e.g., the *Live Server* extension).
+3. Extract the downloaded archive to your desktop.
+4. Afterwards, you can simply click directly on `index.html` to run it, or open the project folder in your editor (e.g., VS Code) and run index.html via a local server (e.g., the *Live Server* extension).
 
-#### Option B: Clone via Git
-1. Clone the repository: `git clone https://github.com/UkU1U/Digitalni_nastenka.git`
+## Option 2: Clone via Git
+1. Clone the repository: git clone [https://github.com/UkU1U/Digitalni_nastenka.git](https://github.com/UkU1U/Digitalni_nastenka.git)
 2. Open the folder and run `index.html`.
 
 ---
