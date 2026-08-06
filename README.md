@@ -21,7 +21,7 @@ The application is used to interactively post, manage, and search for classified
 ## ✨ Hlavní funkce
 
 *   **Evidence inzerátů:** Přidávání, úprava a mazání vlastních příspěvků s možností nahrát až 3 fotografie.
-*   **AI Moderování obsahu:** Každý nový inzerát (text i obrázky) prochází před publikováním automatickou bezpečnostní kontrolou pomocí umělé inteligence (Gemini).
+*   **AI Moderování obsahu:** Každý nový inzerát (text) prochází před publikováním automatickou bezpečnostní kontrolou pomocí umělé inteligence (Gemini).
 *   **Filtrování a vyhledávání:** Rychlé prohledávání obsahu pomocí našeptávače a filtrace podle kategorií (Akce, Upozornění, Nabídky, Školní info).
 *   **Interaktivní diskuse:** Možnost komentovat inzeráty a odpovídat na komentáře ostatních ve víceúrovňových vláknech.
 *   **Uživatelská nastavení:** Plná podpora tmavého a světlého režimu (Dark/Light mode) s automatickým ukládáním preference.
@@ -29,7 +29,7 @@ The application is used to interactively post, manage, and search for classified
 ## ✨ Key features
 
 *   **Ad management:** Add, edit, and delete personal posts with the option to upload up to 3 photos.
-*   **AI Content Moderation:** Every new post (text and images) undergoes an automatic safety check using artificial intelligence (Gemini) before publication.
+*   **AI Content Moderation:** Every new post (text) undergoes an automatic safety check using artificial intelligence (Gemini) before publication.
 *   **Filtering and search:** Quick content search using autocomplete and category filtering (Events, Notices, Offers, School Info).
 *   **Interactive discussion:** The ability to comment on ads and reply to others' comments in multi-level threads.
 *   **User settings:** Full support for dark and light modes with automatic preference saving.
