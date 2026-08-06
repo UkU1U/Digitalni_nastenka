@@ -1,22 +1,96 @@
-# 📌 Digitální nástěnka
+# Digitální nástěnka
 
-> 🎓 Webová aplikace vytvořená jako školní projekt v rámci bakalářské práce.
+Tento repozitář obsahuje zdrojové kódy webové aplikace fungující jako digitální nástěnka. Projekt vznikl jako praktická část bakalářské práce.
 
-Digitální nástěnka je moderní a interaktivní webová platforma sloužící k vkládání, správě a vyhledávání inzerátů, upozornění a školních informací. Aplikace klade důraz na čisté uživatelské prostředí, plynulé animace a bezpečnost obsahu.
+# Digital Noticeboard
+
+This repository contains the source code of a web application functioning as a digital noticeboard. The project was created as the practical part of a bachelor’s thesis.
+
+---
+
+## 📖 O projektu
+
+Aplikace slouží k interaktivnímu vkládání, správě a vyhledávání inzerátů, upozornění a školních informací. Poskytuje uživatelům přehledné prostředí pro sdílení obsahu a komunitní diskusi. Aplikace je navržena s důrazem na čisté uživatelské rozhraní, bezpečnost obsahu (díky automatické AI moderaci) a plynulý chod.
+
+## 📖 About the project
+
+The application is used to interactively post, manage, and search for classifieds, notices, and school information. It provides users with a clear environment for content sharing and community discussion. The app is designed with an emphasis on a clean user interface, content safety (thanks to automated AI moderation), and smooth performance.
+
+---
 
 ## ✨ Hlavní funkce
 
-*   **Autentizace uživatelů:** Bezpečná registrace, přihlášení a obnova zapomenutého hesla s ukazatelem síly hesla
-*   **Správa inzerátů (CRUD):** Registrovaní uživatelé mohou vytvářet, upravovat a mazat své inzeráty. K příspěvku lze připojit až 3 fotografie
-*   **AI Moderátor obsahu:** Každý nový inzerát prochází automatickou kontrolou bezpečnosti pomocí umělé inteligence (Gemini) před jeho publikováním
-*   **Interaktivní komentáře:** Možnost komentovat inzeráty a odpovídat na komentáře ostatních ve víceúrovňových vláknech
-*   **Filtrování a vyhledávání:** Rychlé vyhledávání pomocí našeptávače a filtrace podle kategorií (Akce, Upozornění, Nabídky, Školní info) nebo přítomnosti obrázku
-*   **Tmavý a světlý režim:** Plná podpora Dark Mode s automatickým ukládáním uživatelské preference
-*   **Lightbox Galerie:** Integrované zvětšení a prohlížení fotografií u inzerátů s možností navigace šipkami.
+*   **Evidence inzerátů:** Přidávání, úprava a mazání vlastních příspěvků s možností nahrát až 3 fotografie.
+*   **AI Moderování obsahu:** Každý nový inzerát (text i obrázky) prochází před publikováním automatickou bezpečnostní kontrolou pomocí umělé inteligence (Gemini).
+*   **Filtrování a vyhledávání:** Rychlé prohledávání obsahu pomocí našeptávače a filtrace podle kategorií (Akce, Upozornění, Nabídky, Školní info).
+*   **Interaktivní diskuse:** Možnost komentovat inzeráty a odpovídat na komentáře ostatních ve víceúrovňových vláknech.
+*   **Uživatelská nastavení:** Plná podpora tmavého a světlého režimu (Dark/Light mode) s automatickým ukládáním preference.
+
+## ✨ Key features
+
+*   **Ad management:** Add, edit, and delete personal posts with the option to upload up to 3 photos.
+*   **AI Content Moderation:** Every new post (text and images) undergoes an automatic safety check using artificial intelligence (Gemini) before publication.
+*   **Filtering and search:** Quick content search using autocomplete and category filtering (Events, Notices, Offers, School Info).
+*   **Interactive discussion:** The ability to comment on ads and reply to others' comments in multi-level threads.
+*   **User settings:** Full support for dark and light modes with automatic preference saving.
+
+---
 
 ## 🛠️ Použité technologie
 
 *   **Frontend:** HTML5, CSS3 (CSS Proměnné, Bento Grid layout), Vanilla JavaScript
-*   **Backend & Databáze:** [Supabase](https://supabase.com/) (PostgreSQL) – správa uživatelů (Auth) a databáze
-*   **Úložiště (Storage):** Supabase Storage pro bezpečné ukládání nahrávaných fotografií
-*   **Serverless Funkce:** Supabase Edge Functions pro komunikaci s AI moderátorem
+*   **Backend & Databáze:** Supabase (PostgreSQL), Supabase Auth
+*   **Úložiště (Storage):** Supabase Storage (pro nahrávání obrázků)
+*   **Serverless & AI:** Supabase Edge Functions, Google Gemini API
+
+## 🛠️ Technologies used
+
+*   **Frontend:** HTML5, CSS3 (CSS Variables, Bento Grid layout), Vanilla JavaScript
+*   **Backend & Database:** Supabase (PostgreSQL), Supabase Auth
+*   **Storage:** Supabase Storage (for image uploads)
+*   **Serverless & AI:** Supabase Edge Functions, Google Gemini API
+
+---
+
+## 🚀 Spuštění projektu
+
+Projekt lze spustit dvěma způsoby:
+
+### Možnost 1: stažení jako .zip 
+1. Na hlavní stránce repozitáře klikněte na zelené tlačítko **Code**.
+2. Zvolte možnost **Download ZIP**.
+3. Stažený archiv rozbalte na svém počítači.
+4. Otevřete složku projektu ve svém editoru (např. VS Code) a spusťte soubor `index.html` přes lokální server (např. rozšíření *Live Server*).
+
+#### Možnost B: Klonování přes Git
+1. Naklonujte si repozitář: `git clone https://github.com/UkU1U/Digitalni_nastenk.git`
+2. Otevřete složku a spusťte `index.html`.
+
+### 🚀 Running the project
+
+The project can be run in two ways:
+
+#### Option A: Download as .zip
+1. On the repository main page, click the green **Code** button.
+2. Select **Download ZIP**.
+3. Extract the downloaded archive on your computer.
+4. Open the project folder in your editor (e.g., VS Code) and run `index.html` via a local server (e.g., the *Live Server* extension).
+
+#### Option B: Clone via Git
+1. Clone the repository: `git clone https://github.com/UkU1U/Digitalni_nastenka.git`
+2. Open the folder and run `index.html`.
+
+---
+
+## 📄 Licence
+
+Tento projekt byl vytvořen pro akademické účely jako praktická čaást bakalářská práce. Zpracování osobních údajů probíhá výhradně pro potřeby autentizace uživatelů a není předáváno třetím stranám.
+
+## 📄 License
+
+This project was created for academic purposes as the practical part of a bachelor’s thesis. The processing of personal data is carried out exclusively for user authentication purposes and is not shared with third parties.
+
+---
+
+## Screens
+*(Zde můžeš vložit screenshoty své aplikace - např. pomocí `![Hlavní stránka](cesta/k/obrazku.png)`)*
