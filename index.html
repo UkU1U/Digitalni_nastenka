@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digitální nástěnka</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- HLAVIČKA -->
+    <header>
+      <div class="header-title">Digitální nástěnka</div>
+      <div class="header-actions">
+        <!-- ODHLÁŠENÝ STAV -->
+        <div id="loggedOutState">
+          <button class="btn btn-login" id="showLoginModalBtn">
+            Přihlásit se
+          </button>
+        </div>
+
+        <!-- PŘIHLÁŠENÝ STAV (výchozí skryto) -->
+        <div
+          id="loggedInState"
+          style="
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+          "
+        >
+          <button class="btn btn-add" id="showAddPostModalBtn">
+            Přidat inzerát
+          </button>
+          <button class="btn btn-login" id="profileMenuBtn">Můj profil</button>
+
+          <!-- Rozbalovací menu profilu -->
+          <div id="profileDropdown" class="profile-dropdown">
+            <div class="dropdown-item" id="editProfileBtn">
+              Změnit osobní údaje
+            </div>
+            <div class="dropdown-item" id="myPostsBtn">Moje inzeráty</div>
+            <div class="dropdown-item" id="logoutBtn">Odhlásit</div>
+          </div>
+        </div>
+
+        <button
+          id="dark-mode-toggle"
+          class="btn btn-dark-mode"
+          title="Přepnout vzhled"
+        >
+          <!-- Ikonka Měsíce (pro přepnutí na dark) -->
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <path
+              d="M223.5 32C100 32 0 132 0 256s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-10.1-17.2-8.1c-34.6 9.9-71.8 15.3-110.3 15.3c-87.2 0-158.2-70.7-158.2-158.2c0-87.2 70.7-158.2 158.2-158.2c38.5 0 75.7 5.4 110.3 15.3c7.1 2 18.1 1.9 17.2-8.1c-3.2-6.2-1.8-13.8 3.1-18.7C339 56.2 284.1 32 223.5 32z"
+            />
+          </svg>
+
+          <!-- Ikonka Slunce (pro přepnutí na light) -->
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391.2 116l102.9 20.1c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L431.9 222.3l27.1 101.1c1.4 5.4-.1 11.1-4 15.1s-9.7 5.4-15.1 4L338.8 315.4l-61.4 82.3c-3.1 4.2-7.9 6.6-13.1 6.6s-9.9-2.4-13.1-6.6l-61.4-82.3L127.3 342.5c-5.4 1.4-11.1-.1-15.1-4s-5.4-9.7-4-15.1l27.1-101.1L32.7 160.9c-3.1-4.2-3.7-9.9-1.6-15.2s6.6-8.6 11.9-9.6L145.9 116l20.1-102.9c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 64.1l65.1-61.3c4.4-3.1 10.1-3.7 15.2-1.6zM256 128a128 128 0 1 0 0 256 128 128 0 1 0 0-256z"
+            />
+          </svg>
+
+          <span class="sr-only">Přepnout tmavý/světlý režim</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HLAVNÍ WRAPPER PRO OBSAH -->
+    <div class="page-container">
+      <!-- VYHLEDÁVÁNÍ (přidán div autocomplete a id pro input) -->
+      <div class="search-bar" style="position: relative">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+        <input id="searchInput" type="text" placeholder="Hledat inzeráty..." />
+        <div id="autocomplete" class="autocomplete"></div>
+      </div>
+
+      <!-- HLAVNÍ SEKCE (Filtry vlevo, Inzeráty vpravo) -->
+      <main>
+        <!-- BOČNÍ PANEL S FILTRY -->
+        <aside>
+          <h2 class="filter-title">Filtry</h2>
+          <ul class="filter-list">
+            <label class="filter-item"
+              ><input type="checkbox" value="akce" /> Akce</label
+            >
+            <label class="filter-item"
+              ><input type="checkbox" value="upozorneni" /> Upozornění</label
+            >
+            <label class="filter-item"
+              ><input type="checkbox" value="nabidky" /> Nabídky</label
+            >
+            <label class="filter-item"
+              ><input type="checkbox" value="skolni_info" /> Školní info</label
+            >
+            <label class="filter-item"
+              ><input type="checkbox" value="s_obrazkem" /> S obrázkem</label
+            >
+          </ul>
+        </aside>
+
+        <!-- BANNER PRO REŽIM MOJE INZERÁTY -->
+        <div
+          id="myPostsBanner"
+          style="
+            display: none;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+          "
+        >
+          <span style="font-weight: 600; color: var(--text-primary)"
+            >Zobrazují se pouze vaše inzeráty</span
+          >
+          <button
+            class="btn btn-login"
+            id="cancelMyPostsBtn"
+            style="padding: 6px 14px"
+          >
+            Zpět na všechny
+          </button>
+        </div>
+
+        <!-- MŘÍŽKA KARET -->
+
+        <div id="postGrid" class="cards-grid"></div>
+      </main>
+      <!-- KONTEJNER PRO ÚPRAVU PROFILU (skrytý ve výchozím stavu) -->
+      <div
+        id="profileSettingsContainer"
+        style="
+          display: none;
+          flex: 1;
+          max-width: 600px;
+          margin: 0 auto;
+          background-color: var(--bg-card);
+          padding: 30px;
+          border-radius: 12px;
+          border: 1px solid var(--border-color);
+          box-shadow: var(--shadow);
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+          "
+        >
+          <h2 style="color: var(--text-primary); margin: 0">Osobní údaje</h2>
+          <button class="btn btn-login" id="cancelProfileBtn">
+            Zpět na inzeráty
+          </button>
+        </div>
+
+        <!-- Místo pro chybové/úspěšné hlášky -->
+        <div
+          id="profileMsgBox"
+          style="
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+          "
+        ></div>
+
+        <div class="auth-input-group">
+          <label style="color: var(--text-primary)">Jméno</label>
+          <input type="text" id="profFirstName" class="auth-input" />
+        </div>
+
+        <div class="auth-input-group">
+          <label style="color: var(--text-primary)">Příjmení</label>
+          <input type="text" id="profLastName" class="auth-input" />
+        </div>
+
+        <div class="auth-input-group">
+          <label style="color: var(--text-primary)">E-mail</label>
+          <input type="email" id="profEmail" class="auth-input" />
+        </div>
+
+        <div class="auth-input-group">
+          <div class="auth-label-row">
+            <label style="color: var(--text-primary)" for="profPassword">
+              Nové heslo (nechte prázdné pro zachování stávajícího)
+            </label>
+            <span
+              class="pwd-tip-link"
+              id="profPwdTipBtn"
+              title="Silné heslo obsahuje min. 8 znaků, velká a malá písmena, čísla a symboly."
+            >
+              Jak na silné heslo?
+            </span>
+          </div>
+
+          <div class="password-container">
+            <input
+              type="password"
+              id="profPassword"
+              class="auth-input pwd-input"
+            />
+            <svg
+              class="eye-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+              title="Zobrazit heslo"
+            >
+              <path
+                d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM128 256a160 160 0 1 1 320 0 160 160 0 1 1 -320 0zm160 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
+              />
+            </svg>
+          </div>
+
+          <!-- Ukazatel síly hesla pro profil -->
+          <div class="strength-bar-container">
+            <div id="profStrengthBar" class="strength-bar"></div>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-add"
+          id="saveProfileBtn"
+          style="width: 100%; padding: 12px; font-size: 16px; margin-top: 10px"
+        >
+          Uložit změny
+        </button>
+      </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO PŘIHLÁŠENÍ A REGISTRACI -->
+    <div id="authModal" class="auth-modal">
+      <div class="auth-content">
+        <span class="auth-close" id="closeAuthModal">&times;</span>
+
+        <div id="loginView" class="auth-view">
+          <h2 class="auth-title">Přihlášení</h2>
+          <div class="auth-input-group">
+            <label>E-mail</label>
+            <input type="email" class="auth-input" />
+          </div>
+          <div class="auth-input-group">
+            <div class="auth-label-row">
+              <label>Heslo</label>
+              <span class="pwd-tip-link" onclick="toggleAuthView('reset')"
+                >Zapomněli jste heslo?</span
+              >
+            </div>
+            <div class="password-container">
+              <input
+                type="password"
+                id="loginPassword"
+                class="auth-input pwd-input"
+                required
+              />
+
+              <svg
+                class="eye-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
+                title="Zobrazit heslo"
+              >
+                <path
+                  d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM128 256a160 160 0 1 1 320 0 160 160 0 1 1 -320 0zm160 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
+                />
+              </svg>
+            </div>
+          </div>
+          <label class="auth-checkbox-group">
+            <input type="checkbox" />
+            <span class="custom-checkbox"></span>
+            Pamatovat si mě
+          </label>
+          <div class="auth-switch">
+            <span onclick="toggleAuthView('register')"
+              >Ještě nemáš účet? Klikni sem a zeregistruj se</span
+            >
+          </div>
+          <button class="auth-submit-btn" id="loginSubmitBtn">Přihlásit</button>
+        </div>
+
+        <div id="registerView" class="auth-view" style="display: none">
+          <h2 class="auth-title">Registrace</h2>
+          <div class="auth-input-group">
+            <label class="required-label">Jméno</label>
+            <input type="text" class="auth-input" />
+          </div>
+
+          <div class="auth-input-group">
+            <label class="required-label">Příjmení</label>
+            <input type="text" class="auth-input" />
+          </div>
+
+          <div class="auth-input-group">
+            <label class="required-label">E-mail</label>
+            <input type="email" class="auth-input" />
+          </div>
+
+          <!-- REGISTRACE - SEKCE HESLA A SOUHLASU -->
+          <div class="auth-input-group">
+            <div class="auth-label-row">
+              <label class="required-label">Heslo</label>
+              <!-- Tlačítko pro nápovědu silného hesla -->
+              <span
+                class="pwd-tip-link"
+                id="pwdTipBtn"
+                title="Silné heslo obsahuje min. 8 znaků, velká a malá písmena, čísla a symboly."
+              >
+                Jak na silné heslo?
+              </span>
+            </div>
+            <div class="password-container">
+              <input
+                type="password"
+                id="registerPassword"
+                class="auth-input pwd-input"
+                required
+              />
+              <!-- Ikonka očíčka pro heslo -->
+              <svg
+                class="eye-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
+                title="Zobrazit heslo"
+              >
+                <path
+                  d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM128 256a160 160 0 1 1 320 0 160 160 0 1 1 -320 0zm160 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
+                />
+              </svg>
+            </div>
+            <!-- Ukazatel síly hesla pro registraci -->
+            <div class="strength-bar-container">
+              <div id="strengthBar" class="strength-bar"></div>
+            </div>
+          </div>
+
+          <!-- Custom Checkbox pro souhlas s podmínkami -->
+          <label class="auth-checkbox-group">
+            <input type="checkbox" />
+            <span class="custom-checkbox"></span>
+            <span
+              >Souhlasím se
+              <a href="podminky.html" class="auth-legal-link"
+                >zpracováním osobních údajů</a
+              >
+              <span style="color: #ef4444">*</span></span
+            >
+          </label>
+
+          <div class="auth-switch">
+            <span onclick="toggleAuthView('login')"
+              >Už máš účet? Přihlas se</span
+            >
+          </div>
+
+          <button class="auth-submit-btn" id="registerSubmitBtn">
+            Registrovat
+          </button>
+        </div>
+
+        <div id="resetView" class="auth-view" style="display: none">
+          <form id="resetForm">
+            <h2 class="auth-title">Obnova hesla</h2>
+            <p
+              style="
+                text-align: center;
+                font-size: 14px;
+                margin-bottom: 20px;
+                color: var(--text-secondary);
+              "
+            >
+              Zadejte svůj e-mail a my vám zašleme odkaz pro bezpečné přihlášení
+              a změnu hesla.
+            </p>
+
+            <div class="auth-input-group">
+              <label>E-mail</label>
+              <input type="email" id="resetEmailInput" class="auth-input" />
+            </div>
+
+            <div class="auth-switch">
+              <span onclick="toggleAuthView('login')">Zpět na přihlášení</span>
+            </div>
+
+            <button class="auth-submit-btn" id="resetSubmitBtn">
+              Odeslat odkaz
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO PŘIDÁNÍ INZERÁTU -->
+    <div id="addPostModal" class="auth-modal">
+      <div class="auth-content">
+        <span class="auth-close" id="closeAddPostModal">&times;</span>
+        <h2 class="auth-title add-post-title">Nový inzerát</h2>
+
+        <div class="auth-input-group">
+          <label>Název</label><input type="text" class="auth-input" />
+        </div>
+        <div class="auth-input-group">
+          <label>Kategorie</label>
+          <select id="postCategory" class="auth-input custom-select">
+            <option value="" disabled selected>Vyber možnost</option>
+            <option value="akce">Akce</option>
+            <option value="upozorneni">Upozornění</option>
+            <option value="nabidky">Nabídky</option>
+            <option value="skolni_info">Školní info</option>
+          </select>
+        </div>
+        <div class="auth-input-group">
+          <textarea
+            class="auth-input auth-textarea"
+            placeholder="Popis"
+          ></textarea>
+        </div>
+        <div class="auth-input-group">
+          <label class="auth-input auth-file-upload">
+            <span>Přidat obrázek (volitelné)</span>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              id="imageInput"
+              class="auth-input"
+            />
+          </label>
+
+          <div
+            id="imagePreviewContainer"
+            style="
+              display: flex;
+              gap: 10px;
+              flex-wrap: wrap;
+              margin-bottom: 20px;
+            "
+          ></div>
+        </div>
+        <button class="auth-submit-btn" id="publishBtn">Publikovat</button>
+      </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO DETAIL INZERÁTU A KOMENTÁŘE -->
+    <div id="detailModal" class="auth-modal">
+      <div class="auth-content" style="max-height: 90vh; overflow-y: auto">
+        <span class="auth-close" id="closeDetailModalBtn">&times;</span>
+        <h2
+          class="auth-title add-post-title"
+          id="modalTitle"
+          style="margin-left: 0; margin-bottom: 10px"
+        ></h2>
+        <!-- nový div pro zobrazení kategorie-->
+        <div id="modalCategoryBadge" style="margin-bottom: 15px"></div>
+        <p
+          id="modalText"
+          style="
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+          "
+        ></p>
+
+        <div
+          id="modalImage"
+          style="
+            display: none;
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin-bottom: 20px;
+          "
+        ></div>
+
+        <!-- Akce autora (zobrazí se jen majiteli inzerátu) -->
+        <div
+          id="authorActions"
+          style="
+            display: none;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+          "
+        >
+          <button class="btn btn-add" id="editPostBtn">Upravit inzerát</button>
+          <button
+            class="btn btn-login"
+            id="deletePostBtn"
+            style="color: #ef4444; border-color: #ef4444"
+          >
+            Smazat
+          </button>
+        </div>
+
+        <div id="commentsSection">
+          <h3 style="margin-bottom: 15px; font-size: 1.1rem">Komentáře</h3>
+          <!-- Zde se vypisují komentáře -->
+          <div
+            id="commentsList"
+            style="
+              max-height: 200px;
+              overflow-y: auto;
+              margin-bottom: 15px;
+              padding-right: 10px;
+            "
+          ></div>
+
+          <!-- Políčko pro přidání -->
+          <div style="display: flex; gap: 10px; align-items: flex-start">
+            <input
+              type="text"
+              id="commentInput"
+              placeholder="Napsat komentář..."
+              class="auth-input"
+              style="flex: 1"
+            />
+            <button
+              class="auth-submit-btn"
+              id="addCommentBtn"
+              style="margin: 0; padding: 12px 20px; border-radius: 12px"
+            >
+              Přidat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZVĚTŠENÍ OBRÁZKU (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close" id="lightboxClose">&times;</span>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+        &#10094;
+      </button>
+      <img
+        id="lightboxImg"
+        class="lightbox-img"
+        src=""
+        alt="Zvětšený obrázek"
+      />
+      <button class="lightbox-nav lightbox-next" id="lightboxNext">
+        &#10095;
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

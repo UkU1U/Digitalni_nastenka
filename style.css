@@ -1,0 +1,961 @@
+/* CSS Proměnné (Světlý režim - Light Mode) */
+:root {
+    --bg-body: #f4f5f7;
+    --bg-card: #ffffff;
+    --text-primary: #111827; /* Tmavá pro text */
+    --text-secondary: #6b7280; /* Šedá pro doplňky */
+    --border-color: #d1d5db; /* Světle šedá pro ohraničení */
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    
+    /* Proměnné pro tlačítka */
+    --ui-radius: 9px; /* Jednotné zaoblení pro standardní prvky */
+    --btn-font-weight: 600;
+    --btn-font-size: 0.85rem;
+    
+    --btn-login-bg: #ffffff;
+    --btn-login-text: #374151;
+    --btn-login-border: #d1d5db;
+
+    --btn-add-bg: #2563eb;
+    --btn-add-text: #ffffff;
+    --btn-add-border: #2563eb;
+
+    --checkbox-accent: #2563eb;
+}
+
+/* CSS Proměnné (Tmavý režim - Dark Mode) */
+body.dark-mode {
+    --bg-body: #111827;
+    --bg-card: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #4b5563; /* Tmavší šedá pro ohraničení */
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+
+    /* Tmavé varianty tlačítek */
+    --btn-login-bg: #374151;
+    --btn-login-text: #f9fafb;
+    --btn-login-border: #4b5563;
+
+    --btn-add-bg: #2563eb;
+    --btn-add-text: #ffffff;
+    --btn-add-border: #2563eb;
+
+    --checkbox-accent: #3b82f6;
+}
+
+/* Základní reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 14px; /* Základní velikost písma */
+}
+
+/* Hlavička (Header) */
+header {
+    background-color: var(--bg-card);
+    padding: 1rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Třída pro skrytí elementů pouze pro čtečky obrazovky */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Tlačítka (Buttons) */
+.btn {
+    padding: 0.45rem 1rem;
+    border-radius: var(--ui-radius);
+    font-weight: var(--ui-font-weight);
+    font-size: var(--ui-font-size);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    font-family: inherit;
+}
+
+/* Varianta: Přihlásit se */
+.btn-login {
+    background-color: var(--btn-login-bg);
+    color: var(--btn-login-text);
+    border-color: var(--btn-login-border);
+}
+
+/* Varianta: Přidat inzerát (modré) */
+.btn-add {
+    background-color: var(--btn-add-bg);
+    color: var(--btn-add-text);
+    border-color: var(--btn-add-border);
+}
+
+/* HOVER STYLY PRO BĚŽNÁ TLAČÍTKA */
+.btn-login:hover,
+.btn-dark-mode:hover {
+    background-color: var(--border-color);
+    border-color: #9ca3af;
+}
+
+.btn-add:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* =========================================
+   BUTTON PRO DARK MODE
+   ========================================= */
+   .btn-dark-mode {
+    background-color: var(--btn-login-bg);
+    border: 1px solid var(--btn-login-border);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Pro absolutní pozicování ikonek uvnitř */
+}
+
+/* Styl ikonky uvnitř kulatého buttonu */
+.btn-dark-mode svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--btn-login-text);
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Jemný efekt přechodu */
+    position: absolute; /* Ikonky budou přes sebe */
+}
+
+/* 1. Výchozí stav (Light Mode): Ukázat měsíc, schovat slunce */
+.btn-dark-mode .icon-moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-dark-mode .icon-sun {
+    opacity: 0;
+    transform: scale(0.5); /* Slunce je zmenšené a neviditelné */
+    pointer-events: none; /* Aby se na něj nedalo kliknout, když je schované */
+}
+
+/* 2. Stav Tmavý režim (body.dark-mode): Schovat měsíc, ukázat slunce */
+body.dark-mode .btn-dark-mode .icon-moon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+body.dark-mode .btn-dark-mode .icon-sun {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* Hlavní kontejner */
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem 2.5rem;
+}
+
+/* Vyhledávací pole */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card); /* Automaticky se změní v dark modu */
+    border: 1px solid var(--border-color); /* Automaticky se změní v dark modu */
+    border-radius: var(--ui-radius);
+    padding: 0.45rem 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease, background-color 0.3s, border-color 0.3s;
+}
+
+.search-bar:hover {
+    border-color: #9ca3af;
+}
+
+.search-bar svg {
+    width: 16px;
+    height: 16px;
+    fill: #6b7280;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    color: var(--text-primary); /* Automatická změna barvy textu v dark modu */
+    outline: none;
+    width: 100%;
+    font-size: var(--ui-font-size);
+    font-family: inherit;
+}
+
+
+
+body.dark-mode .search-bar input {
+    color: #f9fafb;
+}
+
+/* Hlavní obsah */
+main {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Boční panel (Filtry) */
+aside {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 90px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.filter-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+}
+
+.filter-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--checkbox-accent);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Mřížka pro karty */
+.cards-grid {
+    flex: 1;
+    display: grid;
+    /* Zmenšíme základní šířku na 250px pro lepší skládání */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    /* Nastavíme fixní výšku řádku, aby se karty hezky zarovnávaly */
+    grid-auto-rows: 250px; 
+    /* zabbraňování mezerám - "vyplní díry" menšími kartami */
+    grid-auto-flow: dense; 
+    gap: 1.5rem;
+    align-content: start;
+}
+
+/* --- Velikosti Bento karet --- */
+/* Základní karta je 1x1 (nemusíme psát třídu, to je výchozí stav) */
+
+/* Karta přes 2 sloupce (široká) */
+.bento-wide {
+    grid-column: span 2;
+}
+
+/* Karta přes 2 řádky (vysoká) */
+.bento-tall {
+    grid-row: span 2;
+}
+
+/* Karta přes 2 sloupce i 2 řádky (velká čtvercová) */
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Jednotlivé karty */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Barevné okraje karet */
+.card.border-blue { border-left: 4px solid #3b82f6; }
+.card.border-green { border-left: 4px solid #10b981; }
+.card.border-red { border-left: 4px solid #ef4444; }
+.card.border-yellow { border-left: 4px solid #f59e0b; }
+
+.card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Speciální karta s obrázkem */
+.card-image {
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-image-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.card-image-overlay h3 {
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+/* Responzivita */
+@media (max-width: 992px) {
+    .page-container {
+        padding: 1.5rem;
+    }
+    main {
+        flex-direction: column;
+    }
+    aside {
+        width: 100%;
+        position: static;
+        margin-bottom: 1.5rem;
+    }
+    .search-bar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    header {
+        padding: 1rem 1.5rem;
+    }
+    .header-title {
+        font-size: 1.25rem;
+    }
+    .header-actions {
+        gap: 0.5rem;
+    }
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    .btn-dark-mode {
+        margin-left: auto; /* Pokud je potřeba zarovnat */
+    }
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   MODÁLNÍ OKNO - PŘIHLÁŠENÍ & REGISTRACE
+   ========================================= */
+   .auth-modal {
+    display: none; /* Skryto ve výchozím stavu */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+    color: #111; /* Pevná barva textu pro zachování 1:1 designu */
+}
+
+/* Modální kontejner s velkým zaoblením */
+.auth-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 40px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Zavírací křížek */
+.auth-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.auth-close:hover {
+    color: #111;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.auth-input-group {
+    margin-bottom: 20px;
+}
+
+.auth-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 0;
+    font-size: 15px;
+}
+
+/* Šedá pole pro text bez ohraničení */
+.auth-input {
+    width: 100%;
+    background-color: #dbdbdb;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #111;
+    outline: none;
+}
+
+.auth-input:focus {
+    box-shadow: 0 0 0 2px #a0a0a0;
+}
+
+/* Vlastní šedý checkbox pro zachování vzhledu 1:1 */
+.auth-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.auth-checkbox-group input[type="checkbox"] {
+    display: none; /* Skryjeme původní checkbox */
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    background-color: #dbdbdb;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+.auth-checkbox-group input[type="checkbox"]:checked + .custom-checkbox::after {
+    content: "✔";
+    position: absolute;
+    color: #333;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Přepínací text (nemáš účet...) */
+.auth-switch {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-switch span {
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
+/* Tlačítka formuláře */
+.auth-submit-btn {
+    display: block;
+    margin: 0 auto;
+    background-color: #dbdbdb;
+    color: #111;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth-submit-btn:hover {
+    background-color: #c4c4c4;
+}
+
+/* Kompatibilita s Dark mode (obal modalu zachová design) */
+body.dark-mode .auth-content {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-mode .auth-input,
+body.dark-mode .custom-checkbox,
+body.dark-mode .auth-submit-btn {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+body.dark-mode .auth-checkbox-group input[type="checkbox"]:checked + .custom-checkbox::after {
+    color: #f9fafb;
+}
+
+/* =========================================
+   MODÁLNÍ OKNO - NOVÝ INZERÁT
+   ========================================= */
+/* Specifický nadpis zarovnaný doleva */
+.add-post-title {
+    text-align: left;
+    margin-bottom: 25px;
+    margin-left: 0; /*zde bylo 10 px*/
+}
+
+/* Vlastní šipka pro Select (Kategorie) */
+.custom-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23111"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 24px;
+    cursor: pointer;
+}
+
+/* Změna barvy šipky v Dark Mode */
+body.dark-mode .custom-select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f9fafb"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+
+/* Velké pole pro Popis */
+.auth-textarea {
+    height: 120px;
+    resize: none; /* Zakáže uživateli měnit velikost pole */
+    font-family: inherit;
+    padding-top: 16px;
+}
+
+/* Nastavení barvy placeholeru, aby vypadal jako běžný text na obrázku */
+.auth-textarea::placeholder {
+    color: #111;
+    opacity: 1;
+}
+
+body.dark-mode .auth-textarea::placeholder {
+    color: #f9fafb;
+}
+
+/* Pole pro nahrání obrázku - přesné zarovnání podle ostatních polí */
+.auth-file-upload {
+    display: flex;
+    align-items: center; /* Zarovná text "Přidat obrázek" vertikálně na střed */
+    min-height: 50px;
+    height: auto;
+    cursor: pointer;
+    padding: 12px 16px;
+    margin-bottom: 30px;
+    background-color: #dbdbdb;
+    border-radius: 12px;
+}
+
+.auth-file-upload span {
+    color: #111;
+}
+
+body.dark-mode .auth-file-upload span {
+    color: #f9fafb;
+}
+
+/* =========================================
+   PERFEKTNÍ ZAROVNÁNÍ VŠECH POLÍ FORMULÁŘE
+   ========================================= */
+
+/* 1. Sjednocení kontejneru pro každé pole */
+.auth-input-group {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Vynucení identické šířky a okrajů pro VŠECHNY typy polí */
+.auth-input,
+.custom-select,
+.auth-textarea,
+.auth-file-upload {
+    width: 100% !important; /* Roztáhne pole přesně na 100 % šířky formuláře */
+    box-sizing: border-box !important; /* Započítá padding do šířky, takže nic nepřetéká */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 3. Úprava pole pro vložení obrázku (label) */
+.auth-file-upload {
+    display: flex;
+    align-items: flex-start;
+    height: 100px;
+    cursor: pointer;
+    padding: 12px 16px;
+}
+
+/* 4. Úprava pro textarea (Popis) */
+.auth-textarea {
+    height: 120px;
+    resize: none;
+    font-family: inherit;
+    padding: 12px 16px;
+}
+
+/* Rozbalovací menu profilu */
+.profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 220px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--ui-radius);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 200;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: var(--border-color);
+}
+
+/* Našeptávač hledání */
+.autocomplete {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--ui-radius);
+    box-shadow: var(--shadow);
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.autocomplete-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: background-color 0.2s;
+}
+
+.autocomplete-item:hover {
+    background-color: var(--border-color);
+}
+
+/* Skrytí karet při filtrování textem */
+.card.hide {
+    display: none;
+}
+
+/* Design komentářů v detailu inzerátu */
+.comment-item {
+    background-color: var(--bg-body);
+    border-radius: var(--ui-radius);
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.comment-item strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.comment-item small {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.comment-text {
+    margin-top: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* =========================================
+   OČÍČKO PRO HESLO
+   ========================================= */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: #888;
+    cursor: pointer;
+    display: none; /* Skryto, dokud se něco nenapíše */
+    transition: fill 0.2s;
+}
+
+.eye-icon:hover {
+    fill: #111;
+}
+
+body.dark-mode .eye-icon:hover {
+    fill: #f9fafb;
+}
+
+/* =========================================
+   LIGHTBOX (ZVĚTŠENÁ GALERIE)
+   ========================================= */
+.lightbox {
+    display: none; /* Skryto ve výchozím stavu */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 2010;
+}
+
+.lightbox-close:hover { color: #bbb; }
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s;
+    z-index: 2010;
+}
+
+.lightbox-nav:hover { background: rgba(255, 255, 255, 0.5); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+/* Odrazy a popisky u hesla */
+.auth-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pwd-tip-link {
+    font-size: 12px;
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.pwd-tip-link:hover {
+    color: #1d4ed8;
+}
+
+/* Ukazatel síly hesla */
+.strength-bar-container {
+    width: 100%;
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Odkaz na zpracování osobních údajů */
+.auth-legal-link {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.auth-legal-link:hover {
+    color: #3b82f6;
+}
+
+/* Dark Mode přizpůsobení */
+body.dark-mode .strength-bar-container {
+    background-color: #374151;
+}
+
+body.dark-mode .pwd-tip-link {
+    color: #60a5fa;
+}
+
+/* Responzivita - na mobilech vypneme Bento a dáme vše pod sebe */
+@media (max-width: 640px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto; /* Výška podle obsahu */
+    }
+    .bento-wide, .bento-tall, .bento-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* =========================================
+   POVINNÁ POLE A OSOBNÍ ÚDAJE
+   ========================================= */
+.required-label::after {
+    content: " *";
+    color: #ef4444;
+}
