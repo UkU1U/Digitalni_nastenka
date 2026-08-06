@@ -93,4 +93,4 @@ This project was created for academic purposes as the practical part of a bachel
 ---
 
 ## Screens
-*(Zde můžeš vložit screenshoty své aplikace - např. pomocí `![Hlavní stránka](cesta/k/obrazku.png)`)*
+*(vložit screenshoty pomocí `![Hlavní stránka](cesta/k/obrazku.png)`)*
