@@ -54,37 +54,45 @@ The application is used to interactively post, manage, and search for classified
 
 ## 🚀 Spuštění projektu
 
-Projekt lze spustit dvěma způsoby:
+Projekt lze spustit či vyzkoušet třemi způsoby:
 
-## Možnost 1: Stažení jako .zip
+### Možnost 1: Živá ukázka (Online)
+Aplikace je nasazena a plně funkční. Můžete si ji prohlédnout přímo v prohlížeči bez nutnosti cokoliv stahovat:
+👉 **[Otevřít Digitální nástěnku](digitalninastenka.netlify.app)**
+
+### Možnost 2: Stažení jako .zip
 1. Na hlavní stránce repozitáře klikněte na zelené tlačítko **Code**.
 2. Zvolte možnost **Download ZIP**.
 3. Stažený archiv rozbalte/extrahujte na plochu svého počítače.
 4. Poté stačí kliknout přímo na soubor `index.html` pro spuštění, případně můžete složku otevřít ve svém editoru (např. VS Code) a spustit ho přes lokální server (např. rozšíření *Live Server*).
 
-## Možnost 2: Klonování přes Git
-1. Naklonujte si repozitář: git clone [https://github.com/UkU1U/Digitalni_nastenka.git](https://github.com/UkU1U/Digitalni_nastenka.git)
+### Možnost 3: Klonování přes Git
+1. Naklonujte si repozitář: `git clone https://github.com/UkU1U/Digitalni_nastenka.git`
 2. Otevřete složku a spusťte `index.html`.
 
 ## 🚀 Running the project
 
-The project can be run in two ways:
+The project can be run or tested in three ways:
 
-## Option 1: Download as .zip
+### Option 1: Live Demo (Online)
+The application is deployed and fully functional online. You can view it directly in your browser without downloading anything:
+👉 **[Open Digital Noticeboard](digitalninastenka.netlify.app)**
+
+### Option 2: Download as .zip
 1. On the repository main page, click the green **Code** button.
 2. Select **Download ZIP**.
 3. Extract the downloaded archive to your desktop.
-4. Afterwards, you can simply click directly on `index.html` to run it, or open the project folder in your editor (e.g., VS Code) and run index.html via a local server (e.g., the *Live Server* extension).
+4. Afterwards, you can simply click directly on `index.html` to run it, or open the project folder in your editor (e.g., VS Code) and run `index.html` via a local server (e.g., the *Live Server* extension).
 
-## Option 2: Clone via Git
-1. Clone the repository: git clone [https://github.com/UkU1U/Digitalni_nastenka.git](https://github.com/UkU1U/Digitalni_nastenka.git)
+### Option 3: Clone via Git
+1. Clone the repository: `git clone https://github.com/UkU1U/Digitalni_nastenka.git`
 2. Open the folder and run `index.html`.
 
 ---
 
 ## 📄 Licence
 
-Tento projekt byl vytvořen pro akademické účely jako praktická čaást bakalářská práce. Zpracování osobních údajů probíhá výhradně pro potřeby autentizace uživatelů a není předáváno třetím stranám.
+Tento projekt byl vytvořen pro akademické účely jako praktická část bakalářské práce. Zpracování osobních údajů probíhá výhradně pro potřeby autentizace uživatelů a není předáváno třetím stranám.
 
 ## 📄 License
 
