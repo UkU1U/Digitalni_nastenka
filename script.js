@@ -1578,3 +1578,50 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 });
+
+/* =========================================
+   NÁVRAT NA VŠECHNY INZERÁTY (KLIKNUTÍ NA LOGO)
+   ========================================= */
+const logoTitle = document.getElementById('logo-title');
+
+if (logoTitle) {
+    logoTitle.addEventListener('click', () => {
+        
+        // 1. Zrušíme režim "Moje inzeráty" a skryjeme žlutý banner
+        isMyPostsMode = false;
+        if (myPostsBanner) myPostsBanner.style.display = 'none';
+
+        // 2. Vymažeme vyhledávací pole a schováme našeptávač
+        if (searchInput) searchInput.value = '';
+        const dropdown = document.getElementById('autocomplete');
+        if (dropdown) dropdown.style.display = 'none';
+
+        // 3. Zrušíme zaškrtnutí všech checkboxů (filtrů) v bočním panelu
+        document.querySelectorAll('.filter-list input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+
+        // 4. Pokud byl uživatel náhodou v nastavení profilu, vrátíme ho zpět na mřížku
+        const profileSettingsContainer = document.getElementById('profileSettingsContainer');
+        const asideFilters = document.querySelector('aside');
+        const searchBarContainer = document.querySelector('.search-bar');
+        
+        if (profileSettingsContainer) profileSettingsContainer.style.display = 'none';
+        if (postGrid) postGrid.style.display = 'grid';
+        if (asideFilters) asideFilters.style.display = 'block';
+        if (searchBarContainer) searchBarContainer.style.display = 'flex';
+
+        // 5. Plynulé odrolování úplně nahoru (nový krok)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // 6. Znovu načteme všechny inzeráty ze Supabase a resetujeme zobrazení karet
+        loadPostsFromSupabase(false).then(() => {
+            if (typeof filterPosts === 'function') {
+                filterPosts();
+            }
+        });
+    });
+}
