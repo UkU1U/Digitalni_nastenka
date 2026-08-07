@@ -58,7 +58,7 @@ Projekt lze spustit či vyzkoušet třemi způsoby:
 
 ### Možnost 1: Živá ukázka (Online)
 Aplikace je nasazena a plně funkční. Můžete si ji prohlédnout přímo v prohlížeči bez nutnosti cokoliv stahovat:
-👉 **[Otevřít Digitální nástěnku](digitalninastenka.netlify.app)**
+👉 **[Otevřít Digitální nástěnku](https://digitalninastenka.netlify.app/)**
 
 ### Možnost 2: Stažení jako .zip
 1. Na hlavní stránce repozitáře klikněte na zelené tlačítko **Code**.
@@ -76,7 +76,7 @@ The project can be run or tested in three ways:
 
 ### Option 1: Live Demo (Online)
 The application is deployed and fully functional online. You can view it directly in your browser without downloading anything:
-👉 **[Open Digital Noticeboard](digitalninastenka.netlify.app)**
+👉 **[Open Digital Noticeboard](https://digitalninastenka.netlify.app/)**
 
 ### Option 2: Download as .zip
 1. On the repository main page, click the green **Code** button.
