@@ -101,4 +101,37 @@ This project was created for academic purposes as the practical part of a bachel
 ---
 
 ## Screens
-*(vložit screenshoty pomocí `![Hlavní stránka]("C:\Users\pproc\OneDrive\Pictures\Screenshots\Snímek obrazovky 2026-08-20 142701.png")`)*
+Hlavní stránka
+
+Light mode
+
+<img width="1919" height="1079" alt="Snímek obrazovky 2026-08-20 143848" src="https://github.com/user-attachments/assets/664264be-4f2d-4713-9959-8ecc24bfcb52" />
+
+Dark mode
+<img width="1919" height="1079" alt="Snímek obrazovky 2026-08-20 142701" src="https://github.com/user-attachments/assets/db6122fd-4d00-41cc-9d51-da3fdd43684d" />
+
+
+Bento Grid layout (Light mode)
+
+<img width="1330" height="704" alt="Snímek obrazovky 2026-08-20 124759" src="https://github.com/user-attachments/assets/b4c7553c-87a0-46bc-9a18-1e54a0f8d3f2" />
+
+
+Bento Grid layout (Dark mode)
+
+<img width="1321" height="1001" alt="Snímek obrazovky 2026-08-20 124832" src="https://github.com/user-attachments/assets/03fc7666-75ee-4526-913c-4b98040e755a" />
+
+
+AI kontrola
+
+<img width="588" height="892" alt="Snímek obrazovky 2026-08-20 141956" src="https://github.com/user-attachments/assets/3b73173d-500a-4048-a0be-6d2007023ff2" />
+
+Detail inzerátu
+
+<img width="563" height="803" alt="Snímek obrazovky 2026-08-20 142534" src="https://github.com/user-attachments/assets/7d055cd6-5511-432c-b934-6c39980d8853" />
+
+<img width="576" height="478" alt="Snímek obrazovky 2026-08-20 143620" src="https://github.com/user-attachments/assets/d3c820ed-e701-4a8d-a854-afe4ad15f32f" />
+
+
+Změna osobních údajů
+
+<img width="1919" height="1079" alt="Snímek obrazovky 2026-08-20 142445" src="https://github.com/user-attachments/assets/3d059f61-6740-4cd6-9479-b4999174ac09" />
