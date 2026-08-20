@@ -101,4 +101,4 @@ This project was created for academic purposes as the practical part of a bachel
 ---
 
 ## Screens
-*(vložit screenshoty pomocí `![Hlavní stránka](cesta/k/obrazku.png)`)*
+*(vložit screenshoty pomocí `![Hlavní stránka]("C:\Users\pproc\OneDrive\Pictures\Screenshots\Snímek obrazovky 2026-08-20 142701.png")`)*
